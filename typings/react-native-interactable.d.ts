@@ -1,6 +1,5 @@
-declare module 'react-native-interactable' {
-
-  import {Animated, ViewProperties, ViewStyle} from 'react-native';
+declare module "react-native-interactable" {
+  import { Animated, ViewProperties, ViewStyle } from "react-native";
 
   namespace Interactable {
     interface ISnapPoint {
@@ -85,8 +84,8 @@ declare module 'react-native-interactable' {
       nativeEvent: INativeStopEvent;
     }
 
-    type NativeDragEventStartStateType = 'start';
-    type NativeDragEventEndStateType = 'end';
+    type NativeDragEventStartStateType = "start";
+    type NativeDragEventEndStateType = "end";
     type NativeDragEventState = NativeDragEventStartStateType | NativeDragEventEndStateType;
 
     interface INativeDragEvent {
@@ -99,11 +98,13 @@ declare module 'react-native-interactable' {
       nativeEvent: INativeDragEvent;
     }
 
-    type NativeAlertEventEnterValueType = 'enter';
-    type NativeAlertEventLeaveValueType = 'leave';
+    type NativeAlertEventEnterValueType = "enter";
+    type NativeAlertEventLeaveValueType = "leave";
     type NativeAlertEventValue = NativeAlertEventEnterValueType | NativeAlertEventLeaveValueType;
 
-    interface INativeAlertEvent { [id: string]: NativeAlertEventValue }
+    interface INativeAlertEvent {
+      [id: string]: NativeAlertEventValue;
+    }
 
     interface IAlertEvent {
       nativeEvent: INativeAlertEvent;
@@ -135,6 +136,22 @@ declare module 'react-native-interactable' {
 
     interface IInteractable {
       View: new () => React.Component<IInteractableView, {}>;
+    }
+
+    interface CoordinatesParams {
+      x?: number;
+      y?: number;
+    }
+
+    interface SnapToParams {
+      index: number;
+    }
+
+    interface InteractableViewComponent extends React.Component<IInteractableView> {
+      setVelocity: (params: CoordinatesParams) => void;
+      snapTo: (params: SnapToParams) => void;
+      changePosition: (params: CoordinatesParams) => void;
+      bringToFront: () => void;
     }
   }
 
